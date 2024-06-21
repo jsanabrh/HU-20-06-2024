@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { RoomsModule } from './rooms/rooms.module';
+import { WorkspacesModule } from './workspaces/workspaces.module';
+import { WorkspacesController } from './worskpaces/controllers/workspaces.controller';
 
 @Module({
   imports: [
@@ -25,10 +27,11 @@ import { RoomsModule } from './rooms/rooms.module';
     }),
     TypeOrmModule.forFeature([]),
     RoomsModule,
+    WorkspacesModule,
   
   ],
 
-  controllers: [],
+  controllers: [WorkspacesController],
   providers: [],
 
 import { AppController } from './app.controller';
