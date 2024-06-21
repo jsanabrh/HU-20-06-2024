@@ -36,6 +36,11 @@ import { WorkspacesController } from './worskpaces/controllers/workspaces.contro
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+
+@Module({
+  imports: [UsersModule],
+=======
 import { SessionsModule } from './sessions/sessions.module';
 import { ReservationsModule } from './reservations/reservations.module';
 import { ReservationsService } from './reservations/services/reservations.service';
