@@ -1,7 +1,9 @@
+import { ReservationEntity } from 'src/reservations/entities/reservations.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -24,4 +26,7 @@ export class UsersEntity {
 
   @CreateDateColumn()
   updateAt: Date;
+
+  @OneToMany(() => ReservationEntity, (reservation) => reservation.user)
+  reservation: ReservationEntity[];
 }
