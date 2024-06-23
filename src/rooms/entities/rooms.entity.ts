@@ -1,7 +1,9 @@
+import { WorkspacesEntity } from 'src/workspaces/entities/workspaces.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -24,4 +26,7 @@ export class RoomsEntity {
 
   @CreateDateColumn()
   updateAt: Date;
+
+  @OneToMany(() => WorkspacesEntity, (workspace) => workspace.room)
+  workspaces: WorkspacesEntity[];
 }
