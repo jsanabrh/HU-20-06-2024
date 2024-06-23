@@ -15,10 +15,10 @@ export class WorkspacesEntity {
   workspaceID: number;
 
   @Column()
-  rowPosition: number;
+  row_position: number;
 
   @Column()
-  columnPosition: number;
+  column_position: number;
 
   @CreateDateColumn()
   createAt: Date;
