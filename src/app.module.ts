@@ -37,12 +37,24 @@ import { WorkspacesService } from './workspaces/services/workspaces.service';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities: [ReservationEntity, RoomsEntity, SessionsEntity, UsersEntity, WorkspacesEntity],
+      entities: [
+        ReservationEntity,
+        RoomsEntity,
+        SessionsEntity,
+        UsersEntity,
+        WorkspacesEntity,
+      ],
       extra: {
         ssl: true,
       },
     }),
-    TypeOrmModule.forFeature([ReservationEntity, RoomsEntity, SessionsEntity, UsersEntity, WorkspacesEntity]),
+    TypeOrmModule.forFeature([
+      ReservationEntity,
+      RoomsEntity,
+      SessionsEntity,
+      UsersEntity,
+      WorkspacesEntity,
+    ]),
     ReservationsModule,
     RoomsModule,
     SessionsModule,
@@ -50,7 +62,19 @@ import { WorkspacesService } from './workspaces/services/workspaces.service';
     WorkspacesModule,
   ],
 
-  controllers: [ReservationsController, RoomsController, SessionsController, UsersController, WorkspacesController],
-  providers: [ReservationsService, RoomsService, SessionsService, UsersService, WorkspacesService],
+  controllers: [
+    ReservationsController,
+    RoomsController,
+    SessionsController,
+    UsersController,
+    WorkspacesController,
+  ],
+  providers: [
+    ReservationsService,
+    RoomsService,
+    SessionsService,
+    UsersService,
+    WorkspacesService,
+  ],
 })
 export class AppModule {}
