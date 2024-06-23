@@ -29,6 +29,6 @@ export class WorkspacesEntity {
   @ManyToOne(() => RoomsEntity, (room) => room.workspaces)
   room: RoomsEntity;
 
-  @OneToMany(() => ReservationEntity, (reservation) => reservation.workspaces)
+  @OneToMany(() => ReservationEntity, (reservation) => reservation.workspace)
   reservation: ReservationEntity[];
 }
