@@ -13,7 +13,7 @@ import {
 @Entity()
 export class ReservationEntity {
   @PrimaryGeneratedColumn()
-  reservationID: number;
+  reservation_id: number;
 
   @Column({ default: Reservation.AVAILABLE, type: 'enum', enum: Reservation })
   status: Reservation;

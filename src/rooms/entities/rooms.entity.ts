@@ -10,7 +10,7 @@ import {
 @Entity()
 export class RoomsEntity {
   @PrimaryGeneratedColumn()
-  roomID: number;
+  room_id: number;
 
   @Column()
   name_room: string;

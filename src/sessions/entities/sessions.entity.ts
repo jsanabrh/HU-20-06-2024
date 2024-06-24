@@ -10,7 +10,7 @@ import {
 @Entity()
 export class SessionsEntity {
   @PrimaryGeneratedColumn()
-  sessionID: number;
+  session_id: number;
 
   @Column()
   name_session: string;

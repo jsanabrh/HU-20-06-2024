@@ -12,7 +12,7 @@ import {
 @Entity()
 export class WorkspacesEntity {
   @PrimaryGeneratedColumn()
-  workspaceID: number;
+  workspace_id: number;
 
   @Column()
   row_position: number;
