@@ -13,13 +13,13 @@ export class UsersEntity {
   userID: number;
 
   @Column()
-  nameUser: string;
+  name_user: string;
 
   @Column()
-  lastNameUser: string;
+  lastname_user: string;
 
   @Column()
-  emailUser: string;
+  email_user: string;
 
   @CreateDateColumn()
   createAt: Date;
