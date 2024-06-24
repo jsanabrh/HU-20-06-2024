@@ -13,13 +13,13 @@ export class RoomsEntity {
   roomID: number;
 
   @Column()
-  nameRoom: string;
+  name_room: string;
 
   @Column()
-  descriptionRoom: string;
+  description_room: string;
 
   @Column()
-  capacityRoom: number;
+  capacity_room: number;
 
   @CreateDateColumn()
   createAt: Date;
