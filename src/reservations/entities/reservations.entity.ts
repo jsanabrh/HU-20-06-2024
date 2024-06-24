@@ -6,6 +6,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -25,11 +26,14 @@ export class ReservationEntity {
   updateAt: Date;
 
   @ManyToOne(() => UsersEntity, (user) => user.reservation)
+  @JoinColumn({ name: 'user_id' })
   user: UsersEntity;
 
   @ManyToOne(() => WorkspacesEntity, (workspace) => workspace.reservation)
+  @JoinColumn({ name: 'workspace_id' })
   workspace: WorkspacesEntity;
 
   @ManyToOne(() => SessionsEntity, (session) => session.reservation)
+  @JoinColumn({ name: 'session_id' })
   session: SessionsEntity;
 }

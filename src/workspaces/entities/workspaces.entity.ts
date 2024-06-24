@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -27,6 +28,7 @@ export class WorkspacesEntity {
   updateAt: Date;
 
   @ManyToOne(() => RoomsEntity, (room) => room.workspaces)
+  @JoinColumn({ name: 'room_id' })
   room: RoomsEntity;
 
   @OneToMany(() => ReservationEntity, (reservation) => reservation.workspace)
