@@ -8,18 +8,18 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class UsersEntity {
+export class SessionsEntity {
   @PrimaryGeneratedColumn()
-  user_id: number;
+  session_id: number;
 
   @Column()
-  name_user: string;
+  name_session: string;
 
-  @Column()
-  lastname_user: string;
+  @CreateDateColumn()
+  start_hour: Date;
 
-  @Column()
-  email_user: string;
+  @CreateDateColumn()
+  end_hour: Date;
 
   @CreateDateColumn()
   createAt: Date;
@@ -27,6 +27,6 @@ export class UsersEntity {
   @CreateDateColumn()
   updateAt: Date;
 
-  @OneToMany(() => ReservationEntity, (reservation) => reservation.user)
+  @OneToMany(() => ReservationEntity, (reservation) => reservation.session)
   reservation: ReservationEntity[];
 }
