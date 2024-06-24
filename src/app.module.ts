@@ -17,7 +17,7 @@ import { SessionsController } from './sessions/controllers/sessions.controller';
 import { UsersController } from './users/controllers/users.controller';
 import { WorkspacesController } from './workspaces/controllers/workspaces.controller';
 import { ReservationsService } from './reservations/services/reservations.service';
-import { RoomsService } from './rooms/services/rooms.service';
+import { RoomService } from './rooms/services/rooms.service';
 import { SessionsService } from './sessions/services/sessions.service';
 import { UsersService } from './users/services/users.service';
 import { WorkspacesService } from './workspaces/services/workspaces.service';
@@ -71,7 +71,7 @@ import { WorkspacesService } from './workspaces/services/workspaces.service';
   ],
   providers: [
     ReservationsService,
-    RoomsService,
+    RoomService,
     SessionsService,
     UsersService,
     WorkspacesService,
