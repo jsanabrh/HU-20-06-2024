@@ -13,13 +13,13 @@ export class SessionsEntity {
   sessionID: number;
 
   @Column()
-  nameSession: string;
+  name_session: string;
 
   @CreateDateColumn()
-  startHour: Date;
+  start_hour: Date;
 
   @CreateDateColumn()
-  endHour: Date;
+  end_hour: Date;
 
   @CreateDateColumn()
   createAt: Date;
