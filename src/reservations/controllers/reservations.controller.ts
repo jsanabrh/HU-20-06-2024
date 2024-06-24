@@ -115,22 +115,22 @@ export class ReservationsController {
 
   @Get('sessions/most-occupied')
   async findMostOccupiedSessions() {
-    return this.reservationService.findSessionsOrderedByReservations('desc');
+    return this.reservationService.orderedByReservations('desc');
   }
 
   @Get('sessions/most-available')
   async findMostAvailableSessions() {
-    return this.reservationService.findSessionsOrderedByReservations('asc');
+    return this.reservationService.orderedByReservations('asc');
   }
 
   @Get('workspaces/session/:session_id')
   async findWorkspacesBySession(@Param('session_id') session_id: number) {
-    return this.reservationService.findWorkspacesBySession(session_id);
+    return this.reservationService.spacesBySession(session_id);
   }
 
   @Get('workspaces/user/:user_id')
   async findWorkspacesByUser(@Param('user_id') user_id: number) {
-    return this.reservationService.findWorkspacesByUser(user_id);
+    return this.reservationService.spacesByUser(user_id);
   }
 
   @Get('occupied-workspaces/room/:room_id/session/:session_id')
@@ -138,6 +138,6 @@ export class ReservationsController {
     @Param('room_id') room_id: number,
     @Param('session_id') session_id: number,
   ) {
-    return this.reservationService.findOccupiedWorkspaces(room_id, session_id);
+    return this.reservationService.ocupedWorkspaces(room_id, session_id);
   }
 }
