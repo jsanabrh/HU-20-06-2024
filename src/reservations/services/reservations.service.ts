@@ -92,7 +92,7 @@ export class ReservationsService {
     );
   }
 
-  async findSessionsOrderedByReservations(
+  async orderedByReservations(
     order: 'desc' | 'asc',
   ): Promise<SessionsEntity[]> {
     return this.reservationRepository.query(`
@@ -104,9 +104,7 @@ export class ReservationsService {
     `);
   }
 
-  async findWorkspacesBySession(
-    session_id: number,
-  ): Promise<WorkspacesEntity[]> {
+  async spacesBySession(session_id: number): Promise<WorkspacesEntity[]> {
     return this.reservationRepository.query(
       `
       SELECT w.*
@@ -118,7 +116,7 @@ export class ReservationsService {
     );
   }
 
-  async findWorkspacesByUser(user_id: number): Promise<WorkspacesEntity[]> {
+  async spacesByUser(user_id: number): Promise<WorkspacesEntity[]> {
     return this.reservationRepository.query(
       `
       SELECT w.*
@@ -130,7 +128,7 @@ export class ReservationsService {
     );
   }
 
-  async findOccupiedWorkspaces(
+  async ocupedWorkspaces(
     room_id: number,
     session_id: number,
   ): Promise<WorkspacesEntity[]> {
