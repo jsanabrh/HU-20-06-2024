@@ -102,4 +102,42 @@ export class ReservationsController {
   remove(@Param('id') id: string) {
     return this.reservationService.remove(+id);
   }
+
+  /* Querys */
+
+  @Get('available-workspaces/room/:room_id/session/:session_id')
+  async findAvailableWorkspaces(
+    @Param('room_id') room_id: number,
+    @Param('session_id') session_id: number,
+  ) {
+    return this.reservationService.availableSpaces(room_id, session_id);
+  }
+
+  @Get('sessions/most-occupied')
+  async findMostOccupiedSessions() {
+    return this.reservationService.findSessionsOrderedByReservations('desc');
+  }
+
+  @Get('sessions/most-available')
+  async findMostAvailableSessions() {
+    return this.reservationService.findSessionsOrderedByReservations('asc');
+  }
+
+  @Get('workspaces/session/:session_id')
+  async findWorkspacesBySession(@Param('session_id') session_id: number) {
+    return this.reservationService.findWorkspacesBySession(session_id);
+  }
+
+  @Get('workspaces/user/:user_id')
+  async findWorkspacesByUser(@Param('user_id') user_id: number) {
+    return this.reservationService.findWorkspacesByUser(user_id);
+  }
+
+  @Get('occupied-workspaces/room/:room_id/session/:session_id')
+  async findOccupiedWorkspaces(
+    @Param('room_id') room_id: number,
+    @Param('session_id') session_id: number,
+  ) {
+    return this.reservationService.findOccupiedWorkspaces(room_id, session_id);
+  }
 }

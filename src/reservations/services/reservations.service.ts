@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ReservationEntity } from '../entities/reservations.entity';
 import { Repository } from 'typeorm';
 import { ReservationDto } from '../dtos/reservations.dto';
+import { WorkspacesEntity } from 'src/workspaces/entities/workspaces.entity';
+import { SessionsEntity } from 'src/sessions/entities/sessions.entity';
 
 @Injectable()
 export class ReservationsService {
@@ -71,5 +73,75 @@ export class ReservationsService {
     } catch (error) {
       throw new NotFoundException('Error deleting reservation');
     }
+  }
+
+  /*Querys*/
+
+  async availableSpaces(
+    room_id: number,
+    session_id: number,
+  ): Promise<WorkspacesEntity[]> {
+    return this.reservationRepository.query(
+      `
+      SELECT w.*
+      FROM public.workspaces_entity w
+      LEFT JOIN public.reservation_entity r ON w.workspace_id = r.workspace_id
+      WHERE w.room_id = $1 AND (r.session_id IS NULL OR r.status = 'canceled' OR r.session_id != $2)
+    `,
+      [room_id, session_id],
+    );
+  }
+
+  async findSessionsOrderedByReservations(
+    order: 'desc' | 'asc',
+  ): Promise<SessionsEntity[]> {
+    return this.reservationRepository.query(`
+      SELECT s.*, COUNT(r.reservation_id) AS num_reservations
+      FROM public.sessions_entity s
+      LEFT JOIN public.reservation_entity r ON s.session_id = r.session_id
+      GROUP BY s.session_id
+      ORDER BY num_reservations ${order.toUpperCase()};
+    `);
+  }
+
+  async findWorkspacesBySession(
+    session_id: number,
+  ): Promise<WorkspacesEntity[]> {
+    return this.reservationRepository.query(
+      `
+      SELECT w.*
+      FROM public.workspaces_entity w
+      INNER JOIN public.reservation_entity r ON w.workspace_id = r.workspace_id
+      WHERE r.session_id = $1 AND r.status != 'canceled'
+    `,
+      [session_id],
+    );
+  }
+
+  async findWorkspacesByUser(user_id: number): Promise<WorkspacesEntity[]> {
+    return this.reservationRepository.query(
+      `
+      SELECT w.*
+      FROM public.workspaces_entity w
+      INNER JOIN public.reservation_entity r ON w.workspace_id = r.workspace_id
+      WHERE r.user_id = $1
+    `,
+      [user_id],
+    );
+  }
+
+  async findOccupiedWorkspaces(
+    room_id: number,
+    session_id: number,
+  ): Promise<WorkspacesEntity[]> {
+    return this.reservationRepository.query(
+      `
+      SELECT w.*
+      FROM public.workspaces_entity w
+      INNER JOIN public.reservation_entity r ON w.workspace_id = r.workspace_id
+      WHERE w.room_id = $1 AND r.session_id = $2 AND r.status != 'canceled'
+    `,
+      [room_id, session_id],
+    );
   }
 }
